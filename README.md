@@ -17,7 +17,7 @@ Dataset (WBCD)with 32 attributes The dataset contains 569 samples of malignant a
 The features include various measurements such as radius, texture, smoothness, and more.
 
 # EDA
-We have performed different data visualizations like scatter plot, blox plot , histograms and correlation heatmap for better data understanding.
+We have performed different data visualizations like scatter plot, box plot , histograms and correlation heatmap for better data understanding.
 
 # Feature Selection
 We have performed
