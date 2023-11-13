@@ -1,5 +1,4 @@
-sqlite3
-os
+
 pandas
 scikit-learn
 seaborn
