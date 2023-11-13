@@ -1,18 +1,7 @@
-# Breast-cancer-prediction-ml-project
 
 # Breast Cancer Feature Selection and Classification
 
 This project aims to perform feature selection and classification on breast cancer data. Breast cancer is a significant health concern, and machine learning techniques can help in early detection and diagnosis.
-
-# Table of Contents
-
-Introduction
-Data Set
-Exploratory Data Analysis 
-Feature Selection
-Classification
-Dependencies
-Results
 
 # Introduction
 Breast cancer is one of the most common types of cancer among women worldwide. Early detection and accurate diagnosis are crucial for effective treatment. In this project, we use machine learning techniques to:
