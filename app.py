@@ -10,71 +10,80 @@ data_list = []
 
 model_filename = os.path.join(script_directory, "mlp_model.joblib")
 mlp_classifier = joblib.load(model_filename)
-st.title("Breast Cancer Prediction using Machine learning")
+st.header("Department of Information Technology")
+st.header("National Institute of Karnataka, Surathkal-575025")
+st.markdown("-------------------------------------------------------------------------------------------------------------")
+st.markdown("")
 
-# Create input fields for 11 features
-radius_mean = st.number_input("radius_mean")
-perimeter_mean= st.number_input("perimeter_mean")
-area_mean = st.number_input("area_mean")
-concavity_mean = st.number_input("concavity_mean")
-concave_points_mean = st.number_input("concave points_mean")
-area_se = st.number_input("area_se")
-radius_worst = st.number_input("radius_worst")
-perimeter_worst = st.number_input("perimeter_worst")
-area_worst = st.number_input("area_worst")
-concavity_worst = st.number_input("concavity_worst")
-concave_points_worst = st.number_input("concave points_worst")
+st.title("Breast Cancer Prediction using Machine Learning")
+st.markdown("**By Akshara(211AI012) and Sowjanya(211AI037)**\n", unsafe_allow_html=True)
+st.markdown("")
+st.markdown("")
 
-def add_user_data(features, predicted_class):
+st.subheader("Please provide your details:")
+# Input fields for patient information
+name = st.text_input("Name")
+age = st.number_input("Age")
+
+st.subheader("Enter Tumor Features")
+# Input fields for 11 features with updated names
+texture_mean = st.number_input("Texture Mean")
+concavity_mean = st.number_input("Concavity Mean")
+concave_points_mean = st.number_input("Concave Points Mean")
+area_se = st.number_input("Area SE")
+symmetry_se = st.number_input("Symmetry SE")
+radius_worst = st.number_input("Radius Worst")
+perimeter_worst = st.number_input("Perimeter Worst")
+area_worst = st.number_input("Area Worst")
+smoothness_worst = st.number_input("Smoothness Worst")
+concavity_worst = st.number_input("Concavity Worst")
+concave_points_worst = st.number_input("Concave Points Worst")
+
+def add_user_data(name, age, features, predicted_class):
     data_list.append({
-        "Feature1 (radius_mean)": features[0],
-        "Feature2 (perimeter_mean)": features[1],
-        "Feature3 (area_mean)": features[2],
-        "Feature4 (concavity_mean)": features[3],
-        "Feature5 (concave_points_mean)": features[4],
-        "Feature6 (area_se)": features[5],
-        "Feature7 (radius_worst)": features[6],
-        "Feature8 (perimeter_worst)": features[7],
-        "Feature9 (area_worst)": features[8],
-        "Feature10 (concavity_worst)": features[9],
-        "Feature11 (concave_points_worst)": features[10],
+        "Name": name,
+        "Age": age,
+        "Texture Mean": features[0],
+        "Concavity Mean": features[1],
+        "Concave Points Mean": features[2],
+        "Area SE": features[3],
+        "Symmetry SE": features[4],
+        "Radius Worst": features[5],
+        "Perimeter Worst": features[6],
+        "Area Worst": features[7],
+        "Smoothness Worst": features[8],
+        "Concavity Worst": features[9],
+        "Concave Points Worst": features[10],
         "Predicted_Class": predicted_class
     })
 
-
-\
-
 if st.button("Predict"):
+    features = [texture_mean, concavity_mean, concave_points_mean, area_se,
+                symmetry_se, radius_worst, perimeter_worst, area_worst,
+                smoothness_worst, concavity_worst, concave_points_worst]
 
-    features = [radius_mean, perimeter_mean, area_mean, concavity_mean,
-       concave_points_mean,area_se,radius_worst, perimeter_worst,
-       area_worst, concavity_worst, concave_points_worst]  # Include all 11 features
-
- 
     prediction = mlp_classifier.predict([features])
 
-  
-
     st.write(f"Predicted class: {prediction[0]}")
-    if(prediction[0]==0):
-        st.write(f"The patient is having Malignant cancer type")
+    if prediction[0] == 0:
+        st.write("The patient is predicted to have Malignant cancer.")
     else:
-        st.write(f"The patient is having Benign cancer type")
+        st.write("The patient is predicted to have Benign cancer.")
     st.write("Thank You")
 
- # Store the user data in the SQLite database
-    db_filename=os.path.join(script_directory, 'user_data.db')
+    # Store the user data in the SQLite database
+    db_filename = os.path.join(script_directory, 'user_data.db')
     conn = sqlite3.connect(db_filename)
     c = conn.cursor()
 
     c.execute('''
-        INSERT INTO user_data (
-            radius_mean, perimeter_mean, area_mean, concavity_mean,
-            concave_points_mean, area_se, radius_worst, perimeter_worst,
-            area_worst, concavity_worst, concave_points_worst, predicted_class
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    ''', (radius_mean, perimeter_mean, area_mean, concavity_mean, concave_points_mean,
-         area_se, radius_worst, perimeter_worst, area_worst, concavity_worst,
-         concave_points_worst, prediction[0]))
+        INSERT INTO user_data (name, age, texture_mean, concavity_mean, concave_points_mean,
+            area_se, symmetry_se, radius_worst, perimeter_worst,
+            area_worst, smoothness_worst, concavity_worst, concave_points_worst, predicted_class
+        ) VALUES (?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ''', (name, age, texture_mean, concavity_mean, concave_points_mean, area_se,
+          symmetry_se, radius_worst, perimeter_worst, area_worst,
+          smoothness_worst, concavity_worst, concave_points_worst, prediction[0]))
+
     conn.commit()
     conn.close()
