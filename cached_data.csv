@@ -1,0 +1,5 @@
+ID,name,age,texture_mean,concavity_mean,concave_points_mean,area_se,symmetry_se,radius_worst,perimeter_worst,area_worst,smoothness_worst,concavity_worst,concave_points_worst,Predicted_Class
+1,,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0
+2,xyz,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0
+3,xyz,1,0.03,0.03,0.01,0.07,0.04,0.07,0.07,0.03,0.060000000000000005,0.22000000000000006,0.03,1
+4,abc,1,0.03,0.03,0.01,0.07,0.04,0.07,0.07,0.03,0.060000000000000005,0.22000000000000006,0.03,1
