@@ -8,15 +8,17 @@ c = conn.cursor()
 c.execute('''
     CREATE TABLE IF NOT EXISTS user_data (
         id INTEGER PRIMARY KEY,
-        radius_mean REAL,
-        perimeter_mean REAL,
-        area_mean REAL,
+        name TEXT,
+        age INTEGER,
+        texture_mean REAL,
         concavity_mean REAL,
         concave_points_mean REAL,
         area_se REAL,
+        symmetry_se REAL,
         radius_worst REAL,
         perimeter_worst REAL,
         area_worst REAL,
+        smoothness_worst REAL,
         concavity_worst REAL,
         concave_points_worst REAL,
         predicted_class INTEGER
