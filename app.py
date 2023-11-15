@@ -25,8 +25,8 @@ if os.path.exists(logo_path):
         st.write(' ')   
 else:
     st.warning("Image file not found. Please check the file path.")
-st.header("National Institute of Karnataka, Surathkal")
 st.header("Department of Information Technology")
+st.header("National Institute of Karnataka, Surathkal")
 st.markdown("-------------------------------------------------------------------------------------------------------------")
 st.markdown("")
 
