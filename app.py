@@ -10,14 +10,28 @@ data_list = []
 
 model_filename = os.path.join(script_directory, "mlp_model.joblib")
 mlp_classifier = joblib.load(model_filename)
-st.header("Department of Information Technology")
+
+logo_path = os.path.join(script_directory, "NITKlogo.png")
+
+from PIL import Image
+image=Image.open(logo_path)
+if os.path.exists(logo_path):
+    col1,col2,col3=st.columns(3)
+    with col1:
+        st.write(' ')
+    with col2:
+        st.image(image,width=200)
+    with col3:
+        st.write(' ')   
+else:
+    st.warning("Image file not found. Please check the file path.")
 st.header("National Institute of Karnataka, Surathkal-575025")
+st.header("Department of Information Technology")
 st.markdown("-------------------------------------------------------------------------------------------------------------")
 st.markdown("")
 
 st.title("Breast Cancer Prediction using Machine Learning")
 st.markdown("**By Akshara(211AI012) and Sowjanya(211AI037)**\n", unsafe_allow_html=True)
-st.markdown("")
 st.markdown("")
 
 st.subheader("Please provide your details:")
