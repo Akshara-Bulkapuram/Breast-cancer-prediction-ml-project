@@ -6,3 +6,4 @@ streamlit
 numpy
 matplotlib
 joblib
+Pillow
